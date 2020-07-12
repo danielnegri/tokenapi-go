@@ -1,0 +1,45 @@
+bin
+logs
+pids
+release
+results
+samples
+tmp
+
+# Binaries for programs and plugins
+*.dll
+*.dylib
+*.exe
+*.exe~
+*.so
+__debug_*
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.csv
+*.dat
+*.gz
+*.log
+*.out
+*.out
+*.pid
+*.seed
+*.swp
+
+# Environment Variables
+.env
+.env.*
+
+# Docker
+.docker
+
+# Editors
+*.iml
+.idea
+.vscode
+
+# OS metadata
+.DS_Store
+Thumbs.db
