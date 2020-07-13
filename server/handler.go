@@ -12,11 +12,10 @@ import (
 	"github.com/danielnegri/adheretech/ledger"
 	"github.com/danielnegri/adheretech/log"
 	"github.com/danielnegri/adheretech/net/httputil"
+	"github.com/danielnegri/adheretech/sync"
 	"github.com/danielnegri/adheretech/version"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-
-	adtechsync "github.com/danielnegri/adheretech/sync"
 )
 
 const Prefix = "/api/v1"
@@ -107,24 +106,41 @@ func (s *service) handleInsert() gin.HandlerFunc {
 				w.Flush()
 			case <-finished:
 				break
+			case <-s.quit:
+				break
 			}
+
 		}
 
 		log.Debug("Done")
 	}
 }
 
-func (s *service) insert(ctx context.Context, tokens []ledger.Token) (chan string, chan interface{}) {
+func (s *service) insert(ctx context.Context, tokens []ledger.Token) (chan string, chan struct{}) {
 	lines := make(chan string)
-	finished := make(chan interface{}, 1)
-	wg := adtechsync.NewWaitGroup(s.cfg.Concurrency)
+	finished := make(chan struct{}, 1)
+	wg := sync.NewWaitGroup(s.cfg.Concurrency)
+	var aborted bool
 	for _, token := range tokens {
 		wg.Add()
+		if aborted {
+			break
+		}
+
 		go func(c context.Context, t ledger.Token) {
 			defer wg.Done()
-			time.Sleep(100 + time.Millisecond)
-			line := fmt.Sprintf("OK  : %v", t)
-			lines <- line
+
+			if err := s.storage.Insert(ctx, t); err != nil {
+				if errors.Is(errors.Internal, err) {
+					log.Errorf("canceling inserts: %v", err)
+					aborted = true
+				}
+
+				lines <- fmt.Sprintf("ERR : %v", t)
+				return
+			}
+
+			lines <- fmt.Sprintf("OK  : %v", t)
 		}(ctx, token)
 	}
 
