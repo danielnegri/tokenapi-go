@@ -4,14 +4,13 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/danielnegri/adheretech/storage/postgres"
-
 	"github.com/danielnegri/adheretech/errors"
 	"github.com/danielnegri/adheretech/ledger"
 	"github.com/danielnegri/adheretech/log"
 	"github.com/danielnegri/adheretech/net"
 	"github.com/danielnegri/adheretech/source"
 	"github.com/danielnegri/adheretech/storage"
+	"github.com/danielnegri/adheretech/storage/postgres"
 	"github.com/danielnegri/adheretech/version"
 	"github.com/gin-gonic/gin"
 	"github.com/go-pg/pg/v10"
@@ -32,8 +31,6 @@ type service struct {
 	source  source.Source
 	storage storage.Storage
 	debug   bool
-
-	quit chan struct{}
 }
 
 var _ Server = (*service)(nil)
@@ -109,5 +106,4 @@ func (s *service) Run() error {
 
 func (s *service) Shutdown() {
 	log.Infof("%s: Stopping Ledger service", ledger.Description)
-	s.quit <- struct{}{}
 }

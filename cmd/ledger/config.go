@@ -5,6 +5,8 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/go-pg/pg/v10"
+
 	"github.com/danielnegri/adheretech/log"
 	"github.com/danielnegri/adheretech/net"
 	"github.com/danielnegri/adheretech/server"
@@ -31,14 +33,24 @@ func newSourceConfig() *source.Config {
 	cfg.Retry = viper.GetInt("source_retry")
 	cfg.Timeout = viper.GetDuration("source_timeout")
 
-	if rawurl := viper.GetString("source_url"); rawurl != "" {
-		srcURL, err := url.Parse(rawurl)
-		if err != nil {
-			_, _ = fmt.Fprintln(os.Stderr, err)
-			os.Exit(2)
-		}
+	rawurl := viper.GetString("source_url")
+	srcURL, err := url.Parse(rawurl)
+	if err != nil {
+		_, _ = fmt.Fprintln(os.Stderr, err)
+		os.Exit(2)
+	}
 
-		cfg.URL = srcURL
+	cfg.URL = srcURL
+
+	return cfg
+}
+
+func newStorageConfig() *pg.Options {
+	dburl := viper.GetString("database_url")
+	cfg, err := pg.ParseURL(dburl)
+	if err != nil {
+		_, _ = fmt.Fprintln(os.Stderr, err)
+		os.Exit(2)
 	}
 
 	return cfg

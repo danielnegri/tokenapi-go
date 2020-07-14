@@ -10,6 +10,7 @@ import (
 	"github.com/danielnegri/adheretech/log"
 	"github.com/danielnegri/adheretech/server"
 	"github.com/danielnegri/adheretech/source"
+	"github.com/danielnegri/adheretech/storage/postgres"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -33,6 +34,7 @@ func commandServe() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			serverCfg := newServerConfig()
 			serverCfg.Source = newSourceConfig()
+			serverCfg.Storage = newStorageConfig()
 
 			log.SetLogger(newLogger())
 			svr := server.New(serverCfg)
@@ -48,7 +50,7 @@ func commandServe() *cobra.Command {
 	cmd.Flags().IntVar(&concurrency, "concurrency", runtime.NumCPU(), "number of concurrent workers")
 	_ = viper.BindPFlag("concurrency", cmd.Flags().Lookup("concurrency"))
 
-	cmd.Flags().StringVar(&databaseURL, "database-url", "", "database connection string")
+	cmd.Flags().StringVar(&databaseURL, "database-url", postgres.DefaultURL, "database connection string")
 	_ = viper.BindPFlag("database_url", cmd.Flags().Lookup("database-url"))
 
 	cmd.Flags().StringVar(&logFormat, "log-format", log.DefaultFormat, "logger format")

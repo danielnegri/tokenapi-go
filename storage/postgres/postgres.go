@@ -63,6 +63,10 @@ func (p *Postgres) Insert(ctx context.Context, token ledger.Token) error {
 			return errors.E(op, token, errors.Duplicate)
 		}
 
+		if strings.Contains(err.Error(), "violates check constraint") {
+			return errors.E(op, token, errors.Invalid)
+		}
+
 		return errors.E(op, token, errors.Internal, err)
 	}
 

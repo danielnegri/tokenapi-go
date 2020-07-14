@@ -97,54 +97,41 @@ func (s *service) handleInsert() gin.HandlerFunc {
 		h.Set("Content-Type", gin.MIMEPlain)
 		w.WriteHeader(http.StatusOK)
 
-		lines, finished := s.insert(ctx, tokens)
+		count := 0
+		lines := make(chan string)
+		finished := make(chan struct{}, 1)
+		go s.insert(ctx, tokens, lines, finished)
 		for {
 			select {
 			case line := <-lines:
-				log.Debug(line)
 				w.Write([]byte(line + "\n"))
 				w.Flush()
+				count++
 			case <-finished:
-				break
-			case <-s.quit:
-				break
+				log.Debugf("Processed %d tokens", count)
+				return
 			}
-
 		}
-
-		log.Debug("Done")
 	}
 }
 
-func (s *service) insert(ctx context.Context, tokens []ledger.Token) (chan string, chan struct{}) {
-	lines := make(chan string)
-	finished := make(chan struct{}, 1)
+func (s *service) insert(ctx context.Context, tokens []ledger.Token, lines chan string, finished chan struct{}) {
 	wg := sync.NewWaitGroup(s.cfg.Concurrency)
-	var aborted bool
 	for _, token := range tokens {
 		wg.Add()
-		if aborted {
-			break
-		}
-
 		go func(c context.Context, t ledger.Token) {
 			defer wg.Done()
 
-			if err := s.storage.Insert(ctx, t); err != nil {
-				if errors.Is(errors.Internal, err) {
-					log.Errorf("canceling inserts: %v", err)
-					aborted = true
-				}
-
-				lines <- fmt.Sprintf("ERR : %v", t)
-				return
+			line := fmt.Sprintf("OK : %v", t)
+			if err := s.storage.Insert(c, t); err != nil {
+				line = fmt.Sprintf("ERR: %v", t)
 			}
 
-			lines <- fmt.Sprintf("OK  : %v", t)
+			log.Debug(line)
+			lines <- line
 		}(ctx, token)
 	}
 
 	wg.Wait()
 	finished <- struct{}{}
-	return lines, finished
 }
