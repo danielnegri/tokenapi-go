@@ -19,8 +19,8 @@ func Token(token ledger.Token) error {
 		return errors.E(op, errors.Invalid, token)
 	}
 
-	if strings.Index(string(token), "-") == 0 {
-		return errors.E(op, errors.Invalid, token, "cannot start with dash")
+	if strings.Contains(string(token), "-") {
+		return errors.E(op, errors.Invalid, token, "cannot contain dash")
 	}
 
 	return nil

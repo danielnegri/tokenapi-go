@@ -13,7 +13,7 @@ func TestToken(t *testing.T) {
 	}{
 		{token: "", valid: false},
 		{token: "xPGvwdBqDrpFLXyMVf0ovQ", valid: true},
-		{token: "-akFu9fparYLZtyNBDH9vg", valid: false},
+		{token: "_-kFu9fparYLZtyNBDH9vg", valid: false},
 		{token: "3oMUY0bSsieok9GKuSQKpQ", valid: true},
 	}
 	for _, test := range tests {
