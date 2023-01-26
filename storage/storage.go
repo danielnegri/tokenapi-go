@@ -15,7 +15,7 @@
 package storage
 
 import (
-	"github.com/danielnegri/adheretech/ledger"
+	"github.com/danielnegri/tokenapi-go/ledger"
 )
 
 const StartTimeKey = "storage-start-time"

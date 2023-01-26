@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/danielnegri/adheretech/ledger"
-	"github.com/danielnegri/adheretech/log"
+	"github.com/danielnegri/tokenapi-go/ledger"
+	"github.com/danielnegri/tokenapi-go/log"
 )
 
 // Error is the type that implements the error interface.

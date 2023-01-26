@@ -22,12 +22,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/danielnegri/adheretech/errors"
-	"github.com/danielnegri/adheretech/ledger"
-	"github.com/danielnegri/adheretech/log"
-	"github.com/danielnegri/adheretech/net/httputil"
-	"github.com/danielnegri/adheretech/sync"
-	"github.com/danielnegri/adheretech/version"
+	"github.com/danielnegri/tokenapi-go/errors"
+	"github.com/danielnegri/tokenapi-go/ledger"
+	"github.com/danielnegri/tokenapi-go/log"
+	"github.com/danielnegri/tokenapi-go/net/httputil"
+	"github.com/danielnegri/tokenapi-go/sync"
+	"github.com/danielnegri/tokenapi-go/version"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

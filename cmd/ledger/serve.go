@@ -20,11 +20,11 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/danielnegri/adheretech/errors"
-	"github.com/danielnegri/adheretech/log"
-	"github.com/danielnegri/adheretech/server"
-	"github.com/danielnegri/adheretech/source"
-	"github.com/danielnegri/adheretech/storage/postgres"
+	"github.com/danielnegri/tokenapi-go/errors"
+	"github.com/danielnegri/tokenapi-go/log"
+	"github.com/danielnegri/tokenapi-go/server"
+	"github.com/danielnegri/tokenapi-go/source"
+	"github.com/danielnegri/tokenapi-go/storage/postgres"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

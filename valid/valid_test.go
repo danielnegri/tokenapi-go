@@ -17,7 +17,7 @@ package valid
 import (
 	"testing"
 
-	"github.com/danielnegri/adheretech/ledger"
+	"github.com/danielnegri/tokenapi-go/ledger"
 )
 
 func TestToken(t *testing.T) {

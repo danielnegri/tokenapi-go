@@ -21,10 +21,10 @@ import (
 
 	"github.com/go-pg/pg/v10"
 
-	"github.com/danielnegri/adheretech/log"
-	"github.com/danielnegri/adheretech/net"
-	"github.com/danielnegri/adheretech/server"
-	"github.com/danielnegri/adheretech/source"
+	"github.com/danielnegri/tokenapi-go/log"
+	"github.com/danielnegri/tokenapi-go/net"
+	"github.com/danielnegri/tokenapi-go/server"
+	"github.com/danielnegri/tokenapi-go/source"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )

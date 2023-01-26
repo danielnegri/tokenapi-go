@@ -23,7 +23,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/danielnegri/adheretech/log"
+	"github.com/danielnegri/tokenapi-go/log"
 )
 
 // ServerConfig holds info required to configure a Server.Server.

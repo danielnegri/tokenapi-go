@@ -18,7 +18,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/danielnegri/adheretech/log"
+	"github.com/danielnegri/tokenapi-go/log"
 	"github.com/go-pg/pg/v10"
 )
 

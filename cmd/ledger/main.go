@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/danielnegri/adheretech/version"
+	"github.com/danielnegri/tokenapi-go/version"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

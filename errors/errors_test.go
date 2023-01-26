@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:build !debug
 // +build !debug
 
 package errors
@@ -21,7 +22,7 @@ import (
 	"os/exec"
 	"testing"
 
-	"github.com/danielnegri/adheretech/ledger"
+	"github.com/danielnegri/tokenapi-go/ledger"
 )
 
 func TestDebug(t *testing.T) {

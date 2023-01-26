@@ -20,10 +20,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/danielnegri/adheretech/errors"
-	"github.com/danielnegri/adheretech/ledger"
-	"github.com/danielnegri/adheretech/storage"
-	"github.com/danielnegri/adheretech/valid"
+	"github.com/danielnegri/tokenapi-go/errors"
+	"github.com/danielnegri/tokenapi-go/ledger"
+	"github.com/danielnegri/tokenapi-go/storage"
+	"github.com/danielnegri/tokenapi-go/valid"
 	"github.com/go-pg/pg/v10"
 )
 

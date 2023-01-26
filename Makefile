@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PROJ=adheretech
+PROJ=tokenapi-go
 ORG_PATH=github.com/danielnegri
 REPO_PATH=$(ORG_PATH)/$(PROJ)
 
-DOCKER_IMAGE=$(PROJ)-ledger
+DOCKER_IMAGE=$(PROJ)
 
 $( shell mkdir -p bin )
 $( shell mkdir -p release/bin )

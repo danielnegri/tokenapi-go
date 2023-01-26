@@ -21,8 +21,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/danielnegri/adheretech/errors"
-	"github.com/danielnegri/adheretech/version"
+	"github.com/danielnegri/tokenapi-go/errors"
+	"github.com/danielnegri/tokenapi-go/version"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -53,8 +53,8 @@ func NotFoundHandler(c *gin.Context) {
 // Requests without errors are logged using logrus.Info().
 //
 // It receives:
-//   1. A time package format string (e.g. time.RFC3339).
-//   2. A boolean stating whether to use UTC time zone or local.
+//  1. A time package format string (e.g. time.RFC3339).
+//  2. A boolean stating whether to use UTC time zone or local.
 func LoggerHandler(logger logrus.FieldLogger, timeFormat string, utc bool) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()

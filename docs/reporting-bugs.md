@@ -1,7 +1,7 @@
 # Reporting Bugs
 
-If any part of the Ledger project has bugs or documentation mistakes, please let us know by [opening an issue][ledger-issue]. 
-We treat bugs and mistakes very seriously and believe no issue is too small. Before creating a bug report, please check 
+If any part of the Ledger project has bugs or documentation mistakes, please let us know by [opening an issue][ledger-issue].
+We treat bugs and mistakes very seriously and believe no issue is too small. Before creating a bug report, please check
 that an issue reporting the same problem does not already exist.
 
 To make the bug report accurate and easy to understand, please try to create bug reports that are:
@@ -34,5 +34,5 @@ $ kill -QUIT $PID
 $ ledger --version
 ```
 
-[ledger-issue]: https://github.com/danielnegri/adheretech/issues/new
+[ledger-issue]: https://github.com/danielnegri/tokenapi-go/issues/new
 [filing-good-bugs]: http://fantasai.inkedblade.net/style/talks/filing-good-bugs/

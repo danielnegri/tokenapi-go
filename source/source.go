@@ -23,10 +23,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/danielnegri/adheretech/errors"
-	"github.com/danielnegri/adheretech/ledger"
-	"github.com/danielnegri/adheretech/log"
-	"github.com/danielnegri/adheretech/version"
+	"github.com/danielnegri/tokenapi-go/errors"
+	"github.com/danielnegri/tokenapi-go/ledger"
+	"github.com/danielnegri/tokenapi-go/log"
+	"github.com/danielnegri/tokenapi-go/version"
 	"github.com/go-resty/resty/v2"
 )
 

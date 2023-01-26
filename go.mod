@@ -1,4 +1,4 @@
-module github.com/danielnegri/adheretech
+module github.com/danielnegri/tokenapi-go
 
 go 1.14
 

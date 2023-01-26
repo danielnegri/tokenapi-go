@@ -20,8 +20,8 @@ package valid
 import (
 	"strings"
 
-	"github.com/danielnegri/adheretech/errors"
-	"github.com/danielnegri/adheretech/ledger"
+	"github.com/danielnegri/tokenapi-go/errors"
+	"github.com/danielnegri/tokenapi-go/ledger"
 )
 
 // Token verifies that the token is a valid non-empty string.

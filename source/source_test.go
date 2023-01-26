@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/danielnegri/adheretech/errors"
+	"github.com/danielnegri/tokenapi-go/errors"
 	"github.com/stretchr/testify/assert"
 )
 

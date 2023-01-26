@@ -16,7 +16,7 @@ version: '3'
 services:
   ledger:
     build: .
-    image: adheretech-ledger
+    image: tokenapi-go
     env_file:
       - .env
     ports:
